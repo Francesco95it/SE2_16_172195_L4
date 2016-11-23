@@ -11,7 +11,7 @@ var data = require('./scripts/data.js')
 
 //defaultVal are default values only used when index.html is called for the first time, not after sending a post req
 var defaultVal={
-    hiddenFull: 'hidden',
+    hiddenInfo: 'hidden',
     id: '',
     name: '',
     surname: '',
@@ -39,16 +39,28 @@ app.get('/', function(req, res)
 	bind.toFile('tpl/index.tpl', defaultVal, 
     function(data){
         res.writeHead(200, {'Content-Type':'text/html'});
-    
+        
         res.end(data);
     });
 });
 
 app.post('/search', function(req, res) {
-    bind.toFile('tpl/index.tpl', defaultVal, 
+    var val;
+    var employee = data.infos(req.body.idSearch);
+    if(employee!=-1){
+        val = {
+            hiddenInfo: 'visible',
+            id: employee[0],
+            name: employee[1],
+            surname: employee[2],
+            level: employee[3],
+            salary: employee[4]
+        }
+    } else val = defaultVal;
+    bind.toFile('tpl/index.tpl', val, 
     function(data){
         res.writeHead(200, {'Content-Type':'text/html'});
-    
+        
         res.end(data);
     });
 });
@@ -59,7 +71,7 @@ app.post('/insert', function(req, res) {
     bind.toFile('tpl/index.tpl', defaultVal, 
     function(data){
         res.writeHead(200, {'Content-Type':'text/html'});
-    
+        
         res.end(data);
     });
 });

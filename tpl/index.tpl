@@ -7,13 +7,13 @@
     <body>
         <div id="searchDiv">
             <form action="http://127.0.0.1:1337/search" method="post">
-                ID: <input name="id"/>
+                ID: <input name="idSearch"/>
                 <button type="submit">Search</button>
             </form>
         </div>
         <div id="deleteDiv">
             <form action="http://127.0.0.1:1337/delete" method="post">
-                ID: <input type="text" id="id" name="id" value="(:id:)"/>
+                ID: <input type="text" id="idDelete" name="id"/>
                 <button type="submit">Delete</button>    
             </form>
         </div>
@@ -32,7 +32,7 @@
                 <button type="submit">Insert</button>    
             </form>
         </div>
-        <div id="infoDiv" style="visibility: hidden;">
+        <div id="infoDiv" style="visibility: (:hiddenInfo:);">
                 ID: <input type="text" id="id" name="id" value="(:id:)"/>
                 <br>
                 Name: <input type="text" id="name" name="name" value="(:name:)"/>

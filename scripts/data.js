@@ -4,19 +4,30 @@ var nemployees = 0;
 function add(id, name, surname, level, salary){
     console.log(id + name + surname + level + salary);
     if(id=='') id = nextid();
-    if(getbyID(id) == -1) {console.log("pusho"); employees.push([id, name, surname, level, salary]); nemployees+=1;}
+    if(getIndexByID(id) == -1) {employees.push([id, name, surname, level, salary]); nemployees+=1;}
     console.log(employees.length);
 }
 
 function nextid(){
-    return nemployees;
+    for(i=0; i<1000; i++){
+        for(j=0;j<nemployees;j++){
+            if(i!=employees[j][0]) return i;
+        }
+    }
 }
 
-function getbyID(id){
+function getIndexByID(id){
     for (i=0;i<nemployees;i++){
         if(employees[i][0]==id) return i;
     }
     return -1;
 }
 
+function infos(id){
+    var index = getIndexByID(id);
+    if (index != -1) return employees[getIndexByID(id)];
+    else return -1;
+}
+
 exports.add = add;
+exports.infos = infos;
