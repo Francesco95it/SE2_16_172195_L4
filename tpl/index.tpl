@@ -13,7 +13,7 @@
         </div>
         <div id="deleteDiv">
             <form action="http://127.0.0.1:1337/delete" method="post">
-                ID: <input type="text" id="idDelete" name="id"/>
+                ID: <input type="text" name="idDelete"/>
                 <button type="submit">Delete</button>    
             </form>
         </div>

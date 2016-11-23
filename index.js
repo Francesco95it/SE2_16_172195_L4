@@ -77,6 +77,7 @@ app.post('/insert', function(req, res) {
 });
 
 app.post('/delete', function(req, res) {
+    data.remove(req.body.idDelete);
     bind.toFile('tpl/index.tpl', defaultVal, 
     function(data){
         res.writeHead(200, {'Content-Type':'text/html'});
