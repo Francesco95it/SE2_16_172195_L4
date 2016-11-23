@@ -27,7 +27,6 @@ app.get('/scripts.js', function (req, res) {
 
 app.set('port', (process.env.PORT || 1337));
 
-//use: for both POST and GET
 app.get('/', function(request, response) 
 {
     //set the headers of the responce
