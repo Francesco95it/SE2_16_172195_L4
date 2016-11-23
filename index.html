@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset="utf-8">
+       <title>Employee</title>
+    </head>
+    <body>
+        
+        <form action="http://127.0.0.1:1337/search" method="post">
+            <input name="id" value="id" />
+            <button type="submit">Search</button>
+        </form>
+        <b>(:address:) - (:city:)</b>
+
+        <br>
+        (:if[resident] ~
+        [:then ~ <font color="green"> sei residente </font> :]
+        [:else ~ <font color="red"> non sei residente</font> :]
+        :)
+       
+    </body>
+</html>
