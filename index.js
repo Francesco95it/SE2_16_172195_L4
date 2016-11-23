@@ -14,8 +14,6 @@ var app = express();
 //defaultVal are default values only used when index.html is called for the first time, not after sending a post req
 var defaultVal={
     hiddenFull: 'hidden',
-    hiddenSearch: 'hidden',
-    hiddenDel: 'hidden',
     id: '',
     name: '',
     surname: '',
@@ -40,7 +38,6 @@ app.set('port', (process.env.PORT || 1337));
 
 app.get('/', function(request, response) 
 {
-    console.log("cai a fasidfa");
 	bind.toFile('tpl/index.tpl', defaultVal, 
     function(data){
         //data contiene la pagina html dopo che sono stati risolti i bind ^
