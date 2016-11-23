@@ -11,6 +11,17 @@ var app = express();
 
 //export.funzione = funzionenome;
 
+//defaultVal are default values only used when index.html is called for the first time, not after sending a post req
+var defaultVal={
+    hiddenFull: 'hidden',
+    hiddenSearch: 'hidden',
+    hiddenDel: 'hidden',
+    id: '',
+    name: '',
+    surname: '',
+    level: '',
+    salary: ''
+}
 
 var bind = require('bind');
 
@@ -29,56 +40,19 @@ app.set('port', (process.env.PORT || 1337));
 
 app.get('/', function(request, response) 
 {
-    //set the headers of the responce
-    var headers = {};
-    headers["Access-Control-Allow-Origin"] = "*"; //for cross enviroment request
-    headers["Access-Control-Allow-Methods"] = "POST, GET, PUT, DELETE, OPTIONS";//methods allowed to responce
-    headers["Access-Control-Allow-Credentials"] = false;
-    headers["Access-Control-Max-Age"] = '86400'; // 24 hours
-    headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"; //type of headers
-    //answer
-    headers["Content-Type"] = "application/json";//format response
-    response.writeHead(200, headers);
-
-	var text = '';
-
-	if ( typeof request.body !== 'undefined' && request.body)
-	{
-        //the content of the POST receiced
-		text = "request.body: " + util.inspect(request.body) + "\n";
-		
-        //content of the post
-		var id;
-		
-		//if query is defined and not null
-		if ( typeof request.body.id !== 'undefined' && request.body.id)
-            //save content of username
-			username = request.body.id;
-		else 
-			username = "not defined";
-			    	
-        text = text + "post received: " + username;
-	}
-	else
-	{
-		text = "body undefined";
-	}
-
-    console.log(text);
+    console.log("cai a fasidfa");
+	bind.toFile('tpl/index.tpl', defaultVal, 
+    function(data){
+        //data contiene la pagina html dopo che sono stati risolti i bind ^
+        //html head (type of the page)
+        //codice di risposta 200 Htlm (OK) 
+        //e mando una risposta di tipo text/html
+        response.writeHead(200, {'Content-Type':'text/html'});
     
-    //answer a JSON file
-	var otherArray = ["item1", "item2"];
-	var otherObject = { item1: "item1val", item2: "item2val" };
-    
-	var json = JSON.stringify({ 
-    	anObject: otherObject, 
-	    anArray: otherArray, 
-    	another: "item"
-	});
-    
-    //send JSON
-    response.end(json);
-
+        //html content
+        //contenuto della pagina html da inviare, contenuto in data
+        response.end(data);
+    });
 });
 
 app.post('/search', function(req, res) {
